@@ -1,45 +1,6 @@
-/**
- * This is the main Node.js server script for your project
- * Check out the two endpoints this back-end API provides in fastify.get and fastify.post below
- */
-/*
-const path = require("path");
-const express = require("express");
-// Require the fastify framework and instantiate it
-const fastify = require("fastify")({
-  // Set this to true for detailed logging:
-  logger: false,
-});
-
-// ADD FAVORITES ARRAY VARIABLE FROM TODO HERE
-
-// Setup our static files
-fastify.register(require("@fastify/static"), {
-  root: path.join(__dirname, "public"),
-  prefix: "/", // optional: default '/'
-});
-
-// Formbody lets us parse incoming forms
-fastify.register(require("@fastify/formbody"));
-
-// View is a templating manager for fastify
-fastify.register(require("@fastify/view"), {
-  engine: {
-    handlebars: require("handlebars"),
-  },
-});
-
-// Load and parse SEO data
-const seo = require("./src/seo.json");
-if (seo.url === "glitch-default") {
-  seo.url = `https://${process.env.PROJECT_DOMAIN}.glitch.me`;
-}
 
 /**
- * Our home page route
- *
- * Returns src/pages/index.hbs with data built into it
- */
+
 /*
 fastify.get("/", function (request, reply) {
   // params is an object we'll pass to our handlebars template
