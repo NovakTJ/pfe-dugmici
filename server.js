@@ -2,7 +2,7 @@
  * This is the main Node.js server script for your project
  * Check out the two endpoints this back-end API provides in fastify.get and fastify.post below
  */
-
+/*
 const path = require("path");
 const express = require("express");
 // Require the fastify framework and instantiate it
@@ -40,6 +40,7 @@ if (seo.url === "glitch-default") {
  *
  * Returns src/pages/index.hbs with data built into it
  */
+/*
 fastify.get("/", function (request, reply) {
   // params is an object we'll pass to our handlebars template
   let params = { seo: seo };
@@ -68,6 +69,7 @@ fastify.get("/", function (request, reply) {
  *
  * Accepts body data indicating the user choice
  */
+/*
 fastify.post("/", function (request, reply) {
   // Build the params object to pass to the template
   let params = { seo: seo };
@@ -117,3 +119,31 @@ fastify.listen(
     console.log(`Your app is listening on ${address}`);
   }
 );
+*/
+const express = require('express');
+const app = express();
+const path = require('path');
+const port = 3000;
+const url = "https://goldenrod-verdant-rayon.glitch.me"
+let log = [];
+
+app.use(express.json());
+
+// Endpoint to receive button press logs
+app.post('/log', (req, res) => {
+  const { buttonNumber } = req.body;
+  log.push({ buttonNumber, timestamp: new Date() });
+  console.log('Button press logged:', { buttonNumber, timestamp: new Date() });
+  res.sendStatus(200);
+});
+
+// Endpoint to retrieve the log (for demonstration purposes)
+app.get('/log', (req, res) => {
+  res.json(log);
+});
+app.get('/',(req,res) =>{
+  res.sendFile('src/pages/cups.html');
+});
+app.listen(port, () => {
+  console.log(`Server listening at ${url}:${port}`);
+});
