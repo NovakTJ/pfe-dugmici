@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Class Feedback</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 50px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Online Class Feedback</h1>
+  <div>
+    <button id="recapButton">I can't follow anymore, please recap</button>
+    <button id="slowDownButton">I can follow somewhat, please slow down</button>
+    <button id="clearButton">Everything is clear</button>
+  </div>
+
+  <!-- Script to handle button clicks -->
+  <script>
+    document.getElementById('recapButton').addEventListener('click', function() {
+      sendFeedback('I can\'t follow anymore, please recap');
+    });
+
+    document.getElementById('slowDownButton').addEventListener('click', function() {
+      sendFeedback('I can follow somewhat, please slow down');
+    });
+
+    document.getElementById('clearButton').addEventListener('click', function() {
+      sendFeedback('Everything is clear');
+    });
+	function sendFeedback(message) {
+	  let feedback = { message: message };
+
+	  fetch('../../server.js', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(feedback)
+	  })
+	  .then(response => {
+		if (!response.ok) {
+		  throw new Error('Network response was not ok');
+		}
+		return response.json();
+	  })
+	  .then(data => {
+		console.log('Feedback sent successfully:', data);
+	  })
+	  .catch(error => {
+		console.error('Error sending feedback:', error);
+	  });
+	}
+  </script>
+</body>
+</html>
