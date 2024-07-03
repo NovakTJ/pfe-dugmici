@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Class Feedback</title>
+  <title>Cups</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
   </style>
 </head>
 <body>
-  <h1>Online Class Feedback</h1>
+  <h1>Cups</h1>
   <div>
     <button id="crveno">Ne razumem ovaj deo, ponovi</button>
     <button id="zuto">Ovo je komplikovano, pričaj malo sporije</button>
@@ -28,6 +28,7 @@
 
   <!-- Script to handle button clicks -->
   <script>
+    const url = 'https://goldenrod-verdant-rayon.glitch.me';
     document.getElementById('crveno').addEventListener('click', function() {
       sendFeedback('crveno');
     });
@@ -42,7 +43,7 @@
 	function sendFeedback(message) {
 	  let feedback = { message: message };
 
-	  fetch('https://goldenrod-verdant-rayon.glitch.me/log', {
+	  fetch(url+'/log', {
 		method: 'POST',
 		headers: {
 		  'Content-Type': 'application/json'

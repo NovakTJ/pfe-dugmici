@@ -5,15 +5,15 @@ const cors = require("cors");
 app.use(cors());
 //const path = require('path');
 const port = 3000;
-const url = "https://goldenrod-verdant-rayon.glitch.me"
+const url = "https://goldenrod-verdant-rayon.glitch.me";
 let log = [];
-const secretpath = '/l'
-const cupsfile = '/app/cups.html'
+const secretpath = '/l';
+const cupsfile = '/app/cups.html';
 app.use(express.json());
 
 // Endpoint to receive button press logs
 app.post('/log', (req, res) => {
-  const dugme = req.body
+  const dugme = req.body;
   const newclick = {dugme, timestamp: new Date() };
   log.push(newclick);
   //salji poruku sa newclick svim konekcijama u watchers. oni treba da dodaju dom element na dno
@@ -30,7 +30,7 @@ app.get('/',(req,res) =>{
   res.sendFile(cupsfile);
 });
 app.post('/resetlog',(req,res) =>{
-  log=[]
+  log=[];
   res.sendStatus(200);
 });
 app.listen(port, () => {
