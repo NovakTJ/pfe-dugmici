@@ -122,7 +122,7 @@ fastify.listen(
 */
 const express = require('express');
 const app = express();
-const path = require('path');
+//const path = require('path');
 const port = 3000;
 const url = "https://goldenrod-verdant-rayon.glitch.me"
 let log = [];
@@ -142,7 +142,7 @@ app.get('/log', (req, res) => {
   res.json(log);
 });
 app.get('/',(req,res) =>{
-  res.sendFile('src/pages/cups.html');
+  res.sendFile('/app/src/pages/cups.html');
 });
 app.listen(port, () => {
   console.log(`Server listening at ${url}:${port}`);

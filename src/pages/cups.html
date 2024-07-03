@@ -42,7 +42,7 @@
 	function sendFeedback(message) {
 	  let feedback = { message: message };
 
-	  fetch('../../server.js', {
+	  fetch('https://goldenrod-verdant-rayon.glitch.me:3000/log', {
 		method: 'POST',
 		headers: {
 		  'Content-Type': 'application/json'
