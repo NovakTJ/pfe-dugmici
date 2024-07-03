@@ -12,18 +12,19 @@ app.use(express.json());
 
 // Endpoint to receive button press logs
 app.post('/log', (req, res) => {
-  const { buttonNumber } = req.body;
-  log.push({ buttonNumber, timestamp: new Date() });
-  console.log('Button press logged:', { buttonNumber, timestamp: new Date() });
+  const dugme = req.body
+  log.push({dugme, timestamp: new Date() });
+  //salji poruku for x in wslist. oni treba da dodaju dom element na dno
   res.sendStatus(200);
 });
 
 // Endpoint to retrieve the log (for demonstration purposes)
 app.get('/log', (req, res) => {
+  //ovde bi mogao da se doda websocket u globalnu promenljivu wslist
   res.json(log);
 });
 app.get('/',(req,res) =>{
-  res.sendFile('/app/src/pages/cups.html');
+  res.sendFile('/app/cups.html');
 });
 app.listen(port, () => {
   console.log(`Server listening at ${url}:${port}`);
