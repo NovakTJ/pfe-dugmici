@@ -21,23 +21,23 @@
 <body>
   <h1>Online Class Feedback</h1>
   <div>
-    <button id="recapButton">I can't follow anymore, please recap</button>
-    <button id="slowDownButton">I can follow somewhat, please slow down</button>
-    <button id="clearButton">Everything is clear</button>
+    <button id="crveno">Ne razumem ovaj deo, ponovi</button>
+    <button id="zuto">Ovo je komplikovano, pričaj malo sporije</button>
+    <button id="zeleno">Sve jasno</button>
   </div>
 
   <!-- Script to handle button clicks -->
   <script>
-    document.getElementById('recapButton').addEventListener('click', function() {
-      sendFeedback('I can\'t follow anymore, please recap');
+    document.getElementById('crveno').addEventListener('click', function() {
+      sendFeedback('crveno');
     });
 
-    document.getElementById('slowDownButton').addEventListener('click', function() {
-      sendFeedback('I can follow somewhat, please slow down');
+    document.getElementById('zuto').addEventListener('click', function() {
+      sendFeedback('zuto')
     });
 
-    document.getElementById('clearButton').addEventListener('click', function() {
-      sendFeedback('Everything is clear');
+    document.getElementById('zeleno').addEventListener('click', function() {
+      sendFeedback('zeleno');
     });
 	function sendFeedback(message) {
 	  let feedback = { message: message };
