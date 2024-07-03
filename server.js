@@ -30,6 +30,7 @@ app.get('/',(req,res) =>{
   res.sendFile(cupsfile);
 });
 app.post('/resetlog',(req,res) =>{
+  //ovo jos nije implementirano u cups.html
   log=[];
   res.sendStatus(200);
 });

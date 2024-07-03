@@ -28,17 +28,13 @@
 
   <!-- Script to handle button clicks -->
   <script>
-    document.getElementById('crveno').addEventListener('click', function() {
-      sendFeedback('crveno');
-    });
+    //implementiraj /resetlog pa izbrisi komentar u server.js
+    
+    document.getElementById('crveno').addEventListener('click', sendFeedback('crveno'));
 
-    document.getElementById('zuto').addEventListener('click', function() {
-      sendFeedback('zuto')
-    });
+    document.getElementById('zuto').addEventListener('click', sendFeedback('crveno'));
 
-    document.getElementById('zeleno').addEventListener('click', function() {
-      sendFeedback('zeleno');
-    });
+    document.getElementById('zeleno').addEventListener('click', sendFeedback('crveno'));
 	function sendFeedback(message) {
 	  let feedback = { message: message };
 
