@@ -14,7 +14,7 @@ app.use(express.json());
 // Endpoint to receive button press logs
 app.post('/log', (req, res) => {
   const dugme = req.body;
-  const newclick = {dugme, timestamp: new Date() };
+const newclick = {dugme, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
   log.push(newclick);
   //salji poruku sa newclick svim konekcijama u watchers. oni treba da dodaju dom element na dno
   res.sendStatus(200);

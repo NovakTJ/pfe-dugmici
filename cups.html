@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cups</title>
+  <title>Online Class Feedback</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
   </style>
 </head>
 <body>
-  <h1>Cups</h1>
+  <h1>Online Class Feedback</h1>
   <div>
     <button id="crveno">Ne razumem ovaj deo, ponovi</button>
     <button id="zuto">Ovo je komplikovano, pričaj malo sporije</button>
@@ -28,22 +28,17 @@
 
   <!-- Script to handle button clicks -->
   <script>
-    const url = 'https://goldenrod-verdant-rayon.glitch.me';
-    document.getElementById('crveno').addEventListener('click', function() {
-      sendFeedback('crveno');
-    });
+    //implementiraj /resetlog pa izbrisi komentar u server.js
+    
+    document.getElementById('crveno').addEventListener('click', sendFeedback('crveno'));
 
-    document.getElementById('zuto').addEventListener('click', function() {
-      sendFeedback('zuto')
-    });
+    document.getElementById('zuto').addEventListener('click', sendFeedback('crveno'));
 
-    document.getElementById('zeleno').addEventListener('click', function() {
-      sendFeedback('zeleno');
-    });
+    document.getElementById('zeleno').addEventListener('click', sendFeedback('crveno'));
 	function sendFeedback(message) {
 	  let feedback = { message: message };
 
-	  fetch(url+'/log', {
+	  fetch('https://goldenrod-verdant-rayon.glitch.me/log', {
 		method: 'POST',
 		headers: {
 		  'Content-Type': 'application/json'
