@@ -10,13 +10,14 @@
       font-family: titillium web, sans-serif;
       text-align: center;
       margin: 50px;
+      font-size: 32px;
       -webkit-font-smoothing: antialiased;
     }
 
     button {
       margin: 10px;
-      padding: 10px 20px;
-      font-size: 16px;
+      padding: 10px 30px;
+      font-size: 24px;
       cursor: pointer;
       font-family: titillium web, sans-serif;
       font-weight: 700;
@@ -43,7 +44,11 @@
   <h1>PFE Dugmići</h1>
   <div>
     <button id="crveno">Ne razumem ovaj deo, ponovi</button>
+  </div>
+  <div>
     <button id="zuto">Ovo je komplikovano, pričaj malo sporije</button>
+  </div>
+  <div>
     <button id="zeleno">Sve jasno</button>
   </div>
 
@@ -52,10 +57,13 @@
     //implementiraj /resetlog pa izbrisi komentar u server.js
     
     document.getElementById('crveno').addEventListener('click', function(){sendFeedback('crveno');});
-
     document.getElementById('zuto').addEventListener('click', function(){sendFeedback('zuto');});
-
     document.getElementById('zeleno').addEventListener('click', function(){sendFeedback('zeleno');});
+    
+    let lastRequestTime = 0;
+    const minRequestInterval = 60 * 1000;
+    
+    
 	function sendFeedback(message) {
 	  let feedback = { message: message };
 
