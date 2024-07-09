@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<!--Podesiti minRequestInterval ako zelis testiranje-->
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -27,42 +30,52 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    #crveno {
+    #crveno-dugme  {
       background-color: red;
     }
 
-    #zuto {
+    #zuto-dugme {
       background-color: gold;
     }
 
-    #zeleno {
-      background-color: green;
+    #zeleno-dugme {
+      background-color: #009999;
     }
   </style>
 </head>
 <body>
   <h1>PFE Dugmići</h1>
   <div>
-    <button id="crveno">Ne razumem ovaj deo, ponovi</button>
+    <button id="crveno-dugme">Ne razumem ovaj deo, ponovi</button>
   </div>
   <div>
-    <button id="zuto">Ovo je komplikovano, pričaj malo sporije</button>
+    <button id="zuto-dugme">Ovo je komplikovano, pričaj malo sporije</button>
   </div>
   <div>
-    <button id="zeleno">Sve jasno</button>
+    <button id="zeleno-dugme">Sve jasno</button>
   </div>
 
   
   <script>
     //implementiraj /resetlog pa izbrisi komentar u server.js
     
-    document.getElementById('crveno').addEventListener('click', function(){sendFeedback('crveno');});
-    document.getElementById('zuto').addEventListener('click', function(){sendFeedback('zuto');});
-    document.getElementById('zeleno').addEventListener('click', function(){sendFeedback('zeleno');});
+    document.getElementById('crveno-dugme').addEventListener('click', function(){handleButtonClick('crveno');});
+    document.getElementById('zuto-dugme').addEventListener('click', function(){handleButtonClick('zuto');});
+    document.getElementById('zeleno-dugme').addEventListener('click', function(){handleButtonClick('zeleno');});
     
     let lastRequestTime = 0;
     const minRequestInterval = 60 * 1000;
     
+    function handleButtonClick(message) {
+      const now = Date.now();
+      // Check if enough time has passed since last request
+      if (now - lastRequestTime >= minRequestInterval) {
+        sendFeedback(message);
+        lastRequestTime = now; // Update last request time
+      } else {
+        console.log('Please wait at least 1 minute before sending another feedback.');
+      }
+    }
     
 	function sendFeedback(message) {
 	  let feedback = { message: message };
