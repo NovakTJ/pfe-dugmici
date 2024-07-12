@@ -11,7 +11,6 @@ const secretpath = '/l';
 const cupsfile = '/app/cups.html';
 app.use(express.json());
 
-// Endpoint to receive button press logs
 app.post('/log', (req, res) => {
   const dugme = req.body['message'];
 const newclick = {dugme, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
@@ -20,7 +19,7 @@ const newclick = {dugme, timestamp: new Date().toLocaleString('sr-Latn',{ timeZo
   res.sendStatus(200);
 });
 
-// Endpoint to retrieve the log (for demonstration purposes)
+
 app.get(secretpath, (req, res) => {
   //ovde bi mogao da se doda websocket u globalnu promenljivu watchers
   //umesto da se salje odmah log, trb da se salje prazna stranica pa odmah svaki element loga dotad preko websocketa.
