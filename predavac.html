@@ -1,7 +1,54 @@
-<html>
-  <head>
-    <title>Stranica za predavaca</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
+    <title>Sajt za PFE predavaca</title>
+</head>
+<body>
+    <h1>Sajt za PFE predavaca</h1>
+    <div id="log"></div>
+    <button onclick="resetLog()">Reset Log</button>
+    <button onclick="saveLog()">Save Log</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        // Display initial log
+        socket.on('initialLog', (log) => {
+            displayLog(log);
+        });
+
+        // Handle new log message
+        socket.on('newLogMessage', (message) => {
+            displayLog([message]);
+        });
+
+        // Handle log reset
+        socket.on('logReset', () => {
+            document.getElementById('log').innerHTML = '';
+        });
+
+        function displayLog(log) {
+            const logElement = document.getElementById('log');
+            log.forEach((message) => {
+                const logEntry = document.createElement('div');
+                logEntry.textContent = `${message.timestamp}: ${message.button}`;
+                logElement.appendChild(logEntry);
+            });
+        }
+
+        function resetLog() {
+            if (confirm('Are you sure you want to reset the log?')) {
+                socket.emit('resetLog');
+            }
+        }
+
+        function saveLog() {
+            socket.emit('saveLog');
+            alert('Log saved to log.txt');
+        }
+    </script>
+</body>
 </html>
