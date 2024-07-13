@@ -11,7 +11,7 @@
     <button onclick="resetLog()">Reset Log</button>
     <button onclick="saveLog()">Save Log</button>
 
-    <script src="/socket.io/socket.io.js"></script>
+    
     <script>
         const socket = io();
 
@@ -46,7 +46,7 @@
         }
 
         function saveLog() {
-            const logtext = "abc\nabc";
+            const logText = "abc\nabc";
             const blob = new Blob([logText], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -58,7 +58,6 @@
             URL.revokeObjectURL(url);
             document.body.removeChild(a);
         }
-
         // Handle download log file
         socket.on('downloadLog', (logText) => {
             

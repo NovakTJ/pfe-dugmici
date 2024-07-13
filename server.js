@@ -9,6 +9,7 @@ const url = "https://goldenrod-verdant-rayon.glitch.me";
 let log = [];
 const secretpath = '/l';
 const cupsfile = '/app/cups.html';
+const nice_predavac = '/app/predavac bez ista.html'
 app.use(express.json());
 
 app.post('/log', (req, res) => {
@@ -27,6 +28,9 @@ app.get(secretpath, (req, res) => {
 });
 app.get('/',(req,res) =>{
   res.sendFile(cupsfile);
+});
+app.get('/n',(req,res) =>{
+  res.sendFile(nice_predavac);
 });
 app.post('/resetlog',(req,res) =>{
   //ovo jos nije implementirano u cups.html
