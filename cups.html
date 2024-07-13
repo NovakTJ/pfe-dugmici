@@ -65,7 +65,7 @@
     document.getElementById('zeleno-dugme').addEventListener('click', function(){handleButtonClick('zeleno');});
     
     let lastRequestTime = 0;
-    const minRequestInterval = 60 * 1000;
+    const minRequestInterval = 2*1000;
     
     function handleButtonClick(message) {
       const now = Date.now();
