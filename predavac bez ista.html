@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sajt za PFE predavaca</title>
   <style>
-    #dozvoli-zvuk {
-      color: #FF0000
-    }
+    
   </style>
 </head>
 <body>
@@ -19,7 +17,7 @@
 
     
     <script>
-        
+        document.getElementById('dozvoli-zvuk').style.backgroundColor = "red";
         var audio = new Audio('https://cdn.glitch.global/df846e88-fed5-4805-8f5d-8fa24488288a/ping-82822.mp3?');
         function resetLog() {
             if (confirm('Are you sure you want to reset the log?')) {
@@ -28,8 +26,8 @@
         }
 
       function allowSound(){
-        audio.play()
-        document.getElementById('dozvolizvuk').remove()
+        audio.play();
+        document.getElementById('dozvoli-zvuk').style.backgroundColor = "#009988";
       }
         function saveLog() {
           
