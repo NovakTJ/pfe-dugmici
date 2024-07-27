@@ -21,6 +21,11 @@ app.post('/log', (req, res) => {
   log.push(newclick);
   console.log('ok');
   //salji poruku sa newclick svim konekcijama u watchers. oni treba da dodaju dom element na dno
+  io.emit('newLogMessage', poruka);
+  const ping = req.body['ping'];
+  if(ping){
+    io.emit('ping');
+  }
   res.sendStatus(200);
 });
 

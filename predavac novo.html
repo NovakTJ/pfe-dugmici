@@ -15,9 +15,10 @@
     <button onclick="saveLog()">Save Log</button>
     <div id="log"></div>
 
-    
+    <script src="/socket.io/socket.io.js"></script>
     <script>
-      const socket = io.connect('https://pfe-dugmici.glitch.me:3000');
+      
+      var socket = io();  
       
       socket.on('initialLog', (log) => {
           displayLog(log);
@@ -25,7 +26,6 @@
 
       // Handle new log message
       socket.on('ping', function(){
-        audio = new Audio('https://cdn.glitch.global/df846e88-fed5-4805-8f5d-8fa24488288a/ping-82822.mp3?');
         audio.play();
       });
 
@@ -43,7 +43,7 @@
           const logElement = document.getElementById('log');
           log.forEach((message) => {
               const logEntry = document.createElement('div');
-              logEntry.textContent = `${message.timestamp}: ${message.dugme}`;
+              logEntry.textContent = `${message.timestamp}: ${message.poruka}`;
               logElement.appendChild(logEntry);
           });
       }

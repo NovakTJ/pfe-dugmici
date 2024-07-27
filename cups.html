@@ -123,7 +123,7 @@
     }
     
     function sendFeedback(message, ping) {
-      let feedback = { message: message};
+      let feedback = { message: message, ping: ping};
 
       fetch('https://pfe-dugmici.glitch.me/log', {
       method: 'POST',
