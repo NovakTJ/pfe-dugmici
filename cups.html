@@ -18,7 +18,7 @@
     }
 
     button {
-      margin: 10px;
+      margin: 6px;
       padding: 15px 20px; 
       font-size: 26px;
       cursor: pointer;
@@ -28,7 +28,17 @@
       border: 2px solid black;
       border-radius: 12px;
       width: 300px; 
-      height: 150px; 
+      height: 130px; 
+    }
+    
+    input{
+      width: 300px; 
+      height: 50px;
+      font-size: 16px;
+      font-family: 'Titillium Web', sans-serif;
+      font-weight: 700;
+      border: 1px solid black;
+      border-radius: 3px;
     }
 
     #crveno-dugme  {
@@ -42,10 +52,17 @@
     #zeleno-dugme {
       background-color: #009988;
     }
+    
+    #send-message-btn {
+      width: 150px; 
+      height: 50px;
+      background-color: #B0B0B0;
+      margin: 0px;
+    }
   </style>
 </head>
 <body>
-  <h1>PFE Dugmići</h1>
+  <h3>PFE Dugmići</h3>
   <div>
     <button id="crveno-dugme">Ne razumem ovaj deo, ponovi</button>
   </div>
@@ -56,7 +73,7 @@
     <button id="zeleno-dugme">Sve jasno</button>
   </div>
   <div>
-    <input type="text" id="message-input" placeholder="Napiši poruku">
+    <input type="text" id="message-input" placeholder=" Napiši poruku">
     <button id="send-message-btn">Pošalji poruku</button>
   </div>
 
