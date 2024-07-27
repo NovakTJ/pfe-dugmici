@@ -34,7 +34,7 @@
             const logElement = document.getElementById('log');
             log.forEach((message) => {
                 const logEntry = document.createElement('div');
-                logEntry.textContent = `${message.timestamp}: ${message.button}`;
+                logEntry.textContent = `${message.timestamp}: ${message.dugme}`;
                 logElement.appendChild(logEntry);
             });
         }
