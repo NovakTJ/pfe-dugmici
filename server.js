@@ -5,7 +5,7 @@ const cors = require("cors");
 app.use(cors());
 //const path = require('path');
 const port = 3000;
-const url = "https://goldenrod-verdant-rayon.glitch.me";
+const url = "https://pfe-dugmici.glitch.me";
 let log = [];
 const secretpath = '/l';
 const cupsfile = '/app/cups.html';
@@ -16,6 +16,7 @@ app.post('/log', (req, res) => {
   const poruka = req.body['message'];
 const newclick = {poruka, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
   log.push(newclick);
+  console.log('ok');
   //salji poruku sa newclick svim konekcijama u watchers. oni treba da dodaju dom element na dno
   res.sendStatus(200);
 });
@@ -30,7 +31,7 @@ app.get('/',(req,res) =>{
   res.sendFile(cupsfile);
 });
 app.get('/n',(req,res) =>{
-  res.sendFile(nice_predavac);
+  res.sendFile(null);
 });
 app.post('/resetlog',(req,res) =>{
   //ovo jos nije implementirano u cups.html
