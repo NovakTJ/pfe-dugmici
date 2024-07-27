@@ -1,21 +1,16 @@
 
 const express = require('express');
-const http = require('http');
-const cors = require("cors");
-const socketIo = require('socket.io');
 const app = express();
-const server = http.createServer(app);
-const io = socketIo(server);
+const cors = require("cors");
+app.use(cors());
 //const path = require('path');
-const port = process.env.PORT || 3000;
+const port = 3000;
 const url = "https://goldenrod-verdant-rayon.glitch.me";
 let log = [];
 const secretpath = '/l';
 const cupsfile = '/app/cups.html';
 const nice_predavac = '/app/predavac bez ista.html'
 app.use(express.json());
-app.use(cors());
-
 
 app.post('/log', (req, res) => {
   const poruka = req.body['message'];
@@ -42,6 +37,6 @@ app.post('/resetlog',(req,res) =>{
   log=[];
   res.sendStatus(200);
 });
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Server listening at ${url}:${port}`);
 });
