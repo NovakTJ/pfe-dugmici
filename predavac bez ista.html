@@ -14,7 +14,7 @@
     
     <script>
         
-
+        var audio = new Audio('https://cdn.glitch.global/df846e88-fed5-4805-8f5d-8fa24488288a/ping-82822.mp3?');
         function resetLog() {
             if (confirm('Are you sure you want to reset the log?')) {
                 socket.emit('resetLog');
@@ -22,6 +22,8 @@
         }
 
         function saveLog() {
+          
+          audio.play();
             const logText = "abc\nabc";
             const blob = new Blob([logText], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
