@@ -13,8 +13,8 @@ const nice_predavac = '/app/predavac bez ista.html'
 app.use(express.json());
 
 app.post('/log', (req, res) => {
-  const dugme = req.body['message'];
-const newclick = {dugme, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
+  const poruka = req.body['message'];
+const newclick = {poruka, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
   log.push(newclick);
   //salji poruku sa newclick svim konekcijama u watchers. oni treba da dodaju dom element na dno
   res.sendStatus(200);

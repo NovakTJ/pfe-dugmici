@@ -55,6 +55,10 @@
   <div>
     <button id="zeleno-dugme">Sve jasno</button>
   </div>
+  <div>
+    <input type="text" id="message-input" placeholder="Napiši poruku">
+    <button id="send-message-btn">Pošalji poruku</button>
+  </div>
 
   
   <script>
@@ -66,13 +70,25 @@
     
     document.getElementById('send-message-btn').addEventListener('click', function() {
       const message = document.getElementById('message-input').value;
+      document.getElementById('message-input').value = '';
       if (message.trim() === '') {
-        console.log('Please enter a message.');
         return;
       }
-
-      sendTextMessage(message);
+      
+      handleMessageAttempt(message);
     });
+    
+    document.getElementById('message-input').addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        // Trigger the click event on the send-message-btn button
+        document.getElementById('send-message-btn').click();
+      }
+    });
+    
+    
+    
     
     let lastRequestTime = 0;
     const minRequestInterval = 2*1000;
@@ -88,29 +104,29 @@
       }
     }
     
-	function sendFeedback(message) {
-	  let feedback = { message: message };
+    function sendFeedback(message) {
+      let feedback = { message: message };
 
-	  fetch('https://goldenrod-verdant-rayon.glitch.me/log', {
-		method: 'POST',
-		headers: {
-		  'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(feedback)
-	  })
-	  .then(response => {
-		if (!response.ok) {
-		  throw new Error('Network response was not ok');
-		}
-		return response.text();
-	  })
-	  .then(data => {
-		console.log('Feedback sent successfully:', data);
-	  })
-	  .catch(error => {
-		console.error('Error sending feedback:', error);
-	  });
-	}
+      fetch('https://goldenrod-verdant-rayon.glitch.me/log', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(feedback)
+      })
+      .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.text();
+      })
+      .then(data => {
+      console.log('Feedback sent successfully:', data);
+      })
+      .catch(error => {
+      console.error('Error sending feedback:', error);
+      });
+    }
   </script>
 </body>
 </html>
