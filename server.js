@@ -1,16 +1,17 @@
 
 const express = require('express');
 const http = require('http');
-const socketIO = require('socketIO');
+const socketIO = require('socket.io');
 const app = express();
 const cors = require("cors");
+const fs = require('fs');
 app.use(cors());
 //const path = require('path');
 const url = "https://pfe-dugmici.glitch.me";
 let log = [];
 const secretpath = '/l';
 const cupsfile = '/app/cups.html';
-const nicePredavac = '/app/predavac bez ista.html'
+const nicePredavac = '/app/predavac novo.html'
 app.use(express.json());
 const server = http.createServer(app);
 const io = socketIO(server);
@@ -45,7 +46,31 @@ app.post('/resetlog',(req,res) =>{
 io.on('connection', (socket) => {
   console.log('A user connected');
 
-  // Example: Handle a chat message event
+  socket.emit('initialLog', log);
+    
+    // Listen for new log messages from clients
+    
+    
+    // Handle reset log request
+    socket.on('resetLog', () => {
+        // Here you should implement a confirmation dialog
+        // For simplicity, we will reset the log immediately
+        log = [];
+        io.emit('logReset');
+    });
+
+    // Handle save log request
+    socket.on('saveLog', () => {
+        const logText = log.map(entry => `${entry.timestamp}: ${entry.button}`).join('\n');
+        fs.writeFile('log.txt', logText, (err) => {
+            if (err) throw err;
+            console.log('Log saved to log.txt');
+        });
+    });
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
   
 });
 const port = process.env.PORT || 3000;
