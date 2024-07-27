@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sajt za PFE predavaca</title>
+  <style>
+    #dozvoli-zvuk {
+      color: #FF0000
+    }
+  </style>
 </head>
 <body>
     <h1>Sajt za PFE predavaca</h1>
-    <div id="log"></div>
+    <button id="dozvoli-zvuk" onclick="allowSound()" >Klikni ovo dugme da bi dozvolio zvuk</button>
     <button onclick="resetLog()">Reset Log</button>
     <button onclick="saveLog()">Save Log</button>
+    <div id="log"></div>
 
     
     <script>
@@ -21,6 +27,10 @@
             }
         }
 
+      function allowSound(){
+        audio.play()
+        document.getElementById('dozvolizvuk').remove()
+      }
         function saveLog() {
           
           audio.play();
