@@ -10,14 +10,13 @@
     <div id="log"></div>
     <button onclick="resetLog()">Reset Log</button>
     <button onclick="saveLog()">Save Log</button>
-    <audio id="message-sound">
-      <source src="notification_sound.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
+    
 
     
     <script>
         const socket = io();
+        const audio = new Audio('https://cdn.glitch.global/df846e88-fed5-4805-8f5d-8fa24488288a/ping-82822.mp3?v=1722101931306');
+      
 
         // Display initial log
         socket.on('initialLog', (log) => {
@@ -25,7 +24,9 @@
         });
 
         // Handle new log message
-        socket.on('ping', document.getElementById('message-sound').play();)
+        socket.on('ping', function(){
+          audio.play();
+        });
       
         socket.on('newLogMessage', (message) => {
             displayLog([message]);
