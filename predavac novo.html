@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sajt za PFE predavaca</title>
+    <title>Stranica za predavače</title>
   <style>
     
   </style>
 </head>
 <body>
-    <h1>Sajt za PFE predavaca</h1>
+    <h1>Stranica za predavače</h1>
     <button id="dozvoli-zvuk" onclick="allowSound()" >Klikni ovo dugme da bi dozvolio zvuk</button>
     <button onclick="resetLog()">Reset Log</button>
     <button onclick="saveLog()">Save Log</button>
@@ -24,7 +24,6 @@
           displayLog(log);
       });
 
-      // Handle new log message
       socket.on('ping', function(){
         audio.play();
       });
@@ -33,10 +32,8 @@
           displayLog([message]);
       });
 
-      // Handle log reset
       socket.on('logReset', () => {
           document.getElementById('log').innerHTML = '';
-        //uradi jos nesto
       });
       
       function displayLog(log) {
@@ -58,7 +55,8 @@
 
       function allowSound(){
         audio.play();
-        document.getElementById('dozvoli-zvuk').style.backgroundColor = "#009988";
+        //document.getElementById('dozvoli-zvuk').style.backgroundColor = "#009988";
+        document.getElementById('dozvoli-zvuk').remove();
       }
       function saveLog() {
 

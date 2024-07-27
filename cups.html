@@ -45,13 +45,13 @@
       background-color: #C01010;
     }
 
-    #zuto-dugme {
+/*     #zuto-dugme {
       background-color: #F0D000;
     }
 
     #zeleno-dugme {
       background-color: #009988;
-    }
+    } */
     
     #send-message-btn {
       width: 150px; 
@@ -63,16 +63,16 @@
   </style>
 </head>
 <body>
-  <h3>PFE Dugmići</h3>
+  <h1>PFE pingovanje</h1>
   <div>
     <button id="crveno-dugme">Ne razumem ovaj deo, ponovi</button>
   </div>
-  <div>
+<!--   <div>
     <button id="zuto-dugme">Ovo je komplikovano, pričaj malo sporije</button>
   </div>
   <div>
     <button id="zeleno-dugme">Sve jasno</button>
-  </div>
+  </div> -->
   <div>
     <input type="text" id="message-input" placeholder=" Napiši poruku">
     <button id="send-message-btn">Pošalji poruku</button>
@@ -83,11 +83,15 @@
     //implementiraj /resetlog pa izbrisi komentar u server.js
     
     document.getElementById('crveno-dugme').addEventListener('click', function(){handleMessageAttempt('crveno');});
-    document.getElementById('zuto-dugme').addEventListener('click', function(){handleMessageAttempt('zuto');});
-    document.getElementById('zeleno-dugme').addEventListener('click', function(){handleMessageAttempt('zeleno');});
+//     document.getElementById('zuto-dugme').addEventListener('click', function(){handleMessageAttempt('zuto');});
+//     document.getElementById('zeleno-dugme').addEventListener('click', function(){handleMessageAttempt('zeleno');});
     
     document.getElementById('send-message-btn').addEventListener('click', function() {
       const message = document.getElementById('message-input').value;
+      if(message.length > 100){
+        document.getElementById('message-input').value = 'Predugacka poruka.';
+        return;
+      }
       document.getElementById('message-input').value = '';
       if (message.trim() === '') {
         return;

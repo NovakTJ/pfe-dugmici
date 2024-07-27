@@ -19,9 +19,8 @@ app.post('/log', (req, res) => {
   const poruka = req.body['message'];
   const newclick = {poruka, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
   log.push(newclick);
-  console.log('ok');
   //salji poruku sa newclick svim konekcijama u watchers. oni treba da dodaju dom element na dno
-  io.emit('newLogMessage', poruka);
+  io.emit('newLogMessage', newclick);
   const ping = req.body['ping'];
   if(ping){
     io.emit('ping');
@@ -40,11 +39,6 @@ app.get('/',(req,res) =>{
 });
 app.get('/n',(req,res) =>{
   res.sendFile(nicePredavac);
-});
-app.post('/resetlog',(req,res) =>{
-  //ovo jos nije implementirano u cups.html
-  log=[];
-  res.sendStatus(200);
 });
 
 
