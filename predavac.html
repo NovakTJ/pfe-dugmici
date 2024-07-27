@@ -50,10 +50,12 @@
         function resetLog() {
             if (confirm('Are you sure you want to reset the log?')) {
                 socket.emit('resetLog');
+              
             }
         }
 
         function saveLog() {
+          audio.play();
             const logText = "abc\nabc";
             const blob = new Blob([logText], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);

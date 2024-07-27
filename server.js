@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const cors = require("cors");
 app.use(cors());
-const fs = require('fs');
 //const path = require('path');
 const port = 3000;
 const url = "https://goldenrod-verdant-rayon.glitch.me";
@@ -13,48 +12,10 @@ const cupsfile = '/app/cups.html';
 const nice_predavac = '/app/predavac bez ista.html'
 app.use(express.json());
 
-var server = app.listen(port, () => {
-  console.log(`Server listening at ${url}:${port}`);
-});
-
-var io = require('socket.io').listen(server);
-
-io.on('connection', (socket) => {
-    console.log('A user connected');
-    
-    // Send initial log to client
-    socket.emit('initialLog', log);
-    
-    // Listen for new log messages from clients
-    
-    
-    // Handle reset log request
-    socket.on('resetLog', () => {
-        // Here you should implement a confirmation dialog
-        // For simplicity, we will reset the log immediately
-        log = [];
-        io.emit('logReset');
-    });
-
-    // Handle save log request
-    socket.on('saveLog', () => {
-        const logText = log.map(entry => `${entry.timestamp}: ${entry.button}`).join('\n');
-        fs.writeFile('log.txt', logText, (err) => {
-            if (err) throw err;
-            console.log('Log saved to log.txt');
-        });
-    });
-
-    socket.on('disconnect', () => {
-        console.log('User disconnected');
-    });
-});
-
 app.post('/log', (req, res) => {
   const poruka = req.body['message'];
-  const newmessage = {poruka, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
-  log.push(newmessage);
-  io.emit('newLogMessage', newmessage);
+const newclick = {poruka, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
+  log.push(newclick);
   //salji poruku sa newclick svim konekcijama u watchers. oni treba da dodaju dom element na dno
   res.sendStatus(200);
 });
@@ -76,6 +37,6 @@ app.post('/resetlog',(req,res) =>{
   log=[];
   res.sendStatus(200);
 });
-
-
-
+app.listen(port, () => {
+  console.log(`Server listening at ${url}:${port}`);
+});

@@ -115,15 +115,15 @@
       const now = Date.now();
       // Check if enough time has passed since last request
       if (now - lastRequestTime >= minRequestInterval) {
-        sendFeedback(message);
+        sendFeedback(message, true);
         lastRequestTime = now; // Update last request time
       } else {
         console.log('Please wait at least 1 minute before sending another feedback.');
       }
     }
     
-    function sendFeedback(message) {
-      let feedback = { message: message };
+    function sendFeedback(message, ping) {
+      let feedback = { message: message, ping:ping };
 
       fetch('https://goldenrod-verdant-rayon.glitch.me/log', {
       method: 'POST',
