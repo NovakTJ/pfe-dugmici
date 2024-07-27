@@ -1,20 +1,22 @@
 
 const express = require('express');
+const http = require('http');
+const socketIO = require('socketIO');
 const app = express();
 const cors = require("cors");
 app.use(cors());
 //const path = require('path');
-const port = 3000;
 const url = "https://pfe-dugmici.glitch.me";
 let log = [];
 const secretpath = '/l';
 const cupsfile = '/app/cups.html';
-const nice_predavac = '/app/predavac bez ista.html'
+const nicePredavac = '/app/predavac bez ista.html'
 app.use(express.json());
-
+const server = http.createServer(app);
+const io = socketIO(server);
 app.post('/log', (req, res) => {
   const poruka = req.body['message'];
-const newclick = {poruka, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
+  const newclick = {poruka, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
   log.push(newclick);
   console.log('ok');
   //salji poruku sa newclick svim konekcijama u watchers. oni treba da dodaju dom element na dno
@@ -31,13 +33,23 @@ app.get('/',(req,res) =>{
   res.sendFile(cupsfile);
 });
 app.get('/n',(req,res) =>{
-  res.sendFile(null);
+  res.sendFile(nicePredavac);
 });
 app.post('/resetlog',(req,res) =>{
   //ovo jos nije implementirano u cups.html
   log=[];
   res.sendStatus(200);
 });
-app.listen(port, () => {
+
+
+io.on('connection', (socket) => {
+  console.log('A user connected');
+
+  // Example: Handle a chat message event
+  
+});
+const port = process.env.PORT || 3000;
+
+server.listen(port, () => {
   console.log(`Server listening at ${url}:${port}`);
 });
