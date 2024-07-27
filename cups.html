@@ -60,14 +60,24 @@
   <script>
     //implementiraj /resetlog pa izbrisi komentar u server.js
     
-    document.getElementById('crveno-dugme').addEventListener('click', function(){handleButtonClick('crveno');});
-    document.getElementById('zuto-dugme').addEventListener('click', function(){handleButtonClick('zuto');});
-    document.getElementById('zeleno-dugme').addEventListener('click', function(){handleButtonClick('zeleno');});
+    document.getElementById('crveno-dugme').addEventListener('click', function(){handleMessageAttempt('crveno');});
+    document.getElementById('zuto-dugme').addEventListener('click', function(){handleMessageAttempt('zuto');});
+    document.getElementById('zeleno-dugme').addEventListener('click', function(){handleMessageAttempt('zeleno');});
+    
+    document.getElementById('send-message-btn').addEventListener('click', function() {
+      const message = document.getElementById('message-input').value;
+      if (message.trim() === '') {
+        console.log('Please enter a message.');
+        return;
+      }
+
+      sendTextMessage(message);
+    });
     
     let lastRequestTime = 0;
     const minRequestInterval = 2*1000;
     
-    function handleButtonClick(message) {
+    function handleMessageAttempt(message) {
       const now = Date.now();
       // Check if enough time has passed since last request
       if (now - lastRequestTime >= minRequestInterval) {
