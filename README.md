@@ -9,7 +9,8 @@ A website for enhancing online seminars, providing live feedback to lecturers.
 
 [The code](https://glitch.com/edit/#!/pfe-dugmici)
 
-The description in Serbian:
+### The description in Serbian:
+
 Napravio sam sajt koji omogućava polaznicima da anonimno daju feedback tokom onlajn predavanja. Mogu kliknuti dugme da im nije jasna trenutna priča ili poslati poruku. Predavač uživo čuje ping kad neko od polaznika to uradi, a moze videti i detaljan log.
 
 Pošto je anonimno, ovako se može dobiti realan feedback tokom predavanja (npr. na svakih pola sata im kažemo da kliknu jedno dugme). Rekao bih i da poboljšava slušanje, jer se polaznici osećaju uključenije u predavanje.
