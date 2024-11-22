@@ -47,18 +47,13 @@ io.on('connection', (socket) => {
 
   socket.emit('initialLog', log);
     
-    // Listen for new log messages from clients
-    
-    
-    // Handle reset log request
     socket.on('resetLog', () => {
-        // Here you should implement a confirmation dialog
-        // For simplicity, we will reset the log immediately
+        
         log = [];
         io.emit('logReset');
     });
 
-    // Handle save log request
+    
     socket.on('saveLog', () => {
         const logText = log.map(entry => `${entry.timestamp}: ${entry.button}`).join('\n');
         fs.writeFile('log.txt', logText, (err) => {

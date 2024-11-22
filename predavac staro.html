@@ -18,12 +18,12 @@
         const audio = null;
       
 
-        // Display initial log
+        
         socket.on('initialLog', (log) => {
             displayLog(log);
         });
 
-        // Handle new log message
+        
         socket.on('ping', function(){
           audio = new Audio('https://cdn.glitch.global/df846e88-fed5-4805-8f5d-8fa24488288a/ping-82822.mp3?');
           audio.play();
@@ -33,7 +33,7 @@
             displayLog([message]);
         });
 
-        // Handle log reset
+        
         socket.on('logReset', () => {
             document.getElementById('log').innerHTML = '';
           //uradi jos nesto
@@ -71,7 +71,7 @@
             URL.revokeObjectURL(url);
             document.body.removeChild(a);
         }
-        // Handle download log file
+         
         socket.on('downloadLog', (logText) => {
             
         });

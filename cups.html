@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 
-<!--Podesiti minRequestInterval ako zelis testiranje-->
+<!--Podesiti minRequestInterval ako zelis zastitu.
+Trenutno je stavljeno na kratko radi testiranja.
+
+-->
 
 <html lang="en">
 <head>
@@ -102,9 +105,9 @@
     
     document.getElementById('message-input').addEventListener('keyup', function(event) {
       if (event.key === 'Enter') {
-        // Cancel the default action, if needed
+        
         event.preventDefault();
-        // Trigger the click event on the send-message-btn button
+        
         document.getElementById('send-message-btn').click();
       }
     });
@@ -113,14 +116,14 @@
     
     
     let lastRequestTime = 0;
-    const minRequestInterval = 2*1000;
+    const minRequestInterval = 2; //treba *1000
     
     function handleMessageAttempt(message) {
       const now = Date.now();
-      // Check if enough time has passed since last request
+      
       if (now - lastRequestTime >= minRequestInterval) {
         sendFeedback(message, true);
-        lastRequestTime = now; // Update last request time
+        lastRequestTime = now; 
       } else {
         console.log('Please wait at least 1 minute before sending another feedback.');
       }
