@@ -1,13 +1,13 @@
 # pfe-dugmici
 A website for enhancing online seminars, providing live feedback to lecturers.
-The website is hosted at glitch.com, where the code is available too.
+
+### The website is hosted at glitch.com and the code is there as well.
 
 [The webpage for students](https://pfe-dugmici.glitch.me/)
 
-Stranica za predavače je:
-https://pfe-dugmici.glitch.me/n
-Možeš videti kod na:
-https://glitch.com/edit/#!/pfe-dugmici
+[The webpage for lecturers](https://pfe-dugmici.glitch.me/n)
+
+[The code](https://glitch.com/edit/#!/pfe-dugmici)
 
 The description in Serbian:
 Napravio sam sajt koji omogućava polaznicima da anonimno daju feedback tokom onlajn predavanja. Mogu kliknuti dugme da im nije jasna trenutna priča ili poslati poruku. Predavač uživo čuje ping kad neko od polaznika to uradi, a moze videti i detaljan log.
