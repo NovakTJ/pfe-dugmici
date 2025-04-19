@@ -1,4 +1,3 @@
-
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
@@ -6,7 +5,6 @@ const app = express();
 const cors = require("cors");
 const fs = require('fs');
 app.use(cors());
-//const path = require('path');
 const url = "https://pfe-dugmici.glitch.me";
 let log = [];
 const secretpath = '/l';
@@ -15,6 +13,7 @@ const nicePredavac = '/app/predavac novo.html'
 app.use(express.json());
 const server = http.createServer(app);
 const io = socketIO(server);
+
 app.post('/log', (req, res) => {
   const poruka = req.body['message'];
   const newclick = {poruka, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
