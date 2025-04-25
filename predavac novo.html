@@ -42,8 +42,9 @@
       function displayLog(log) {
           const logElement = document.getElementById('log');
           log.forEach((message) => {
+              const currentTime = message.timestamp.split(' ')[1];
               const logEntry = document.createElement('div');
-              logEntry.textContent = `${message.timestamp}: ${message.poruka}`;
+              logEntry.textContent = `${currentTime}: ${message.poruka}`;
               logElement.appendChild(logEntry);
           });
       }
@@ -64,7 +65,10 @@
       function saveLog() {
 
         audio.play();
-          const logText = "abc\nabc";
+        
+          const logContainer = document.getElementById('log');
+          const logText = logContainer.innerText;
+        
           const blob = new Blob([logText], { type: 'text/plain' });
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
