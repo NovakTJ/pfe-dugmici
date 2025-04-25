@@ -36,8 +36,14 @@ app.get(secretpath, (req, res) => {
 app.get('/',(req,res) =>{
   res.sendFile(cupsfile);
 });
+app.get('/predavac-m4n2txz7vqp9k6yf3agwb0eulrd8cj1sh5iovnkmzt73xyfdq96pelgwhaqv3z9by01sjmru6otgcpvx4nd78qmwklafyre2ghx0b5cu9vznqrd34tkap6lisdjflisou38fjie93eodjofjef9',(req,res) =>{
+  res.sendFile(nicePredavac);
+});
 app.get('/n',(req,res) =>{
   res.sendFile(nicePredavac);
+});
+app.get('/warmup', (req, res) => {
+  res.sendStatus(200);
 });
 
 

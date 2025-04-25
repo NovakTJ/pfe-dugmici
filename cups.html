@@ -160,5 +160,11 @@ Trenutno je stavljeno na kratko radi testiranja.
       });
     }
   </script>
+  <script>
+    // one‐off, no‐side‐effect call to wake the server & do TLS/TCP handshake
+    fetch('https://pfe-dugmici.glitch.me/warmup', { mode: 'no-cors' })
+      .catch(()=>{ /* nije nas briga */ });
+  </script>
+
 </body>
 </html>
