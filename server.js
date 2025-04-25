@@ -4,17 +4,28 @@ const socketIO = require('socket.io');
 const app = express();
 const cors = require("cors");
 const fs = require('fs');
+const rateLimit = require("express-rate-limit");
+
 app.use(cors());
 const url = "https://pfe-dugmici.glitch.me";
 let log = [];
-const secretpath = '/l';
+const logpath = '/l';
 const cupsfile = '/app/cups.html';
 const nicePredavac = '/app/predavac novo.html'
 app.use(express.json());
 const server = http.createServer(app);
 const io = socketIO(server);
 
-app.post('/log', (req, res) => {
+const feedbackLimiter = rateLimit({
+  //ovo je teska zastita od spamovanja uf
+  windowMs: 10 * 1000,
+  max: 2,
+  message: { error: "Too many feedback clicks, please wait a moment." },
+  statusCode: 429
+});
+
+
+app.post('/log', feedbackLimiter, (req, res) => {
   const poruka = req.body['message'];
   const newclick = {poruka, timestamp: new Date().toLocaleString('sr-Latn',{ timeZone: "Europe/Belgrade", timeZoneName: "short" }) };
   log.push(newclick);
@@ -28,7 +39,7 @@ app.post('/log', (req, res) => {
 });
 
 
-app.get(secretpath, (req, res) => {
+app.get(logpath, (req, res) => {
   //ovde bi mogao da se doda websocket u globalnu promenljivu watchers
   //umesto da se salje odmah log, trb da se salje prazna stranica pa odmah svaki element loga dotad preko websocketa.
   res.json(log);

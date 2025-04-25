@@ -87,12 +87,15 @@ Trenutno je stavljeno na kratko radi testiranja.
     <input type="text" id="message-input" placeholder=" Napiši poruku">
     <button id="send-message-btn">Pošalji poruku</button>
   </div>
+  <p id="too-soon-msg" style="display:none; color:red; font-size:0.9em; text-align:center">
+    Sačekaj 30 sekundi između dva pinga.
+  </p>
 
   
   <script>
     //implementiraj /resetlog pa izbrisi komentar u server.js
     
-    document.getElementById('crveno-dugme').addEventListener('click', function(){handleMessageAttempt('crveno');});
+    document.getElementById('crveno-dugme').addEventListener('click', function(){handleMessageAttempt('crveno dugme');});
 //     document.getElementById('zuto-dugme').addEventListener('click', function(){handleMessageAttempt('zuto');});
 //     document.getElementById('zeleno-dugme').addEventListener('click', function(){handleMessageAttempt('zeleno');});
     
