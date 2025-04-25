@@ -126,7 +126,7 @@ Trenutno je stavljeno na kratko radi testiranja.
     
     
     let lastRequestTime = 0;
-    const minRequestInterval = 2; //treba *1000
+    const minRequestInterval = 30000; //treba *1000
     
     function handleMessageAttempt(message) {
       const now = Date.now();
@@ -135,7 +135,10 @@ Trenutno je stavljeno na kratko radi testiranja.
         sendFeedback(message, true);
         lastRequestTime = now; 
       } else {
-        console.log('Please wait at least 1 minute before sending another feedback.');
+        document.getElementById('too-soon-msg').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('too-soon-msg').style.display = 'none';
+        }, 2000); // hide after 2 seconds
       }
     }
     
