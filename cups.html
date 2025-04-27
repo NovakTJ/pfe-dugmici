@@ -101,16 +101,17 @@ Trenutno je stavljeno na kratko radi testiranja.
     
     document.getElementById('send-message-btn').addEventListener('click', function() {
       const message = document.getElementById('message-input').value;
-      if(message.length > 100){
+      if(message.length > 1000){
         document.getElementById('message-input').value = 'Predugacka poruka.';
         return;
       }
-      document.getElementById('message-input').value = '';
       if (message.trim() === '') {
         return;
       }
       
-      handleMessageAttempt(message);
+      if(handleMessageAttempt(message)){
+        document.getElementById('message-input').value = '';
+      }
     });
     
     document.getElementById('message-input').addEventListener('keyup', function(event) {
@@ -134,12 +135,15 @@ Trenutno je stavljeno na kratko radi testiranja.
       if (now - lastRequestTime >= minRequestInterval) {
         sendFeedback(message, true);
         lastRequestTime = now; 
+        return true;
       } else {
         document.getElementById('too-soon-msg').style.display = 'block';
         setTimeout(() => {
           document.getElementById('too-soon-msg').style.display = 'none';
         }, 2000); // hide after 2 seconds
+        return false;
       }
+      
     }
     
     function sendFeedback(message, ping) {
