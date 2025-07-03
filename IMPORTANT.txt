@@ -1,0 +1,3 @@
+NOTE: asset URLs were not automatically replaced in any source
+      code, so you will still need to replace CDN URLs in your
+      code with relative links to the ./glitch-assets directory.
